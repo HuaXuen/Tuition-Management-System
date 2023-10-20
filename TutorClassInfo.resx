@@ -1,0 +1,112 @@
+﻿<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="picTutor.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+        oftks8AAAAAASUVORK5CYII=
+</value>
+  </data>
+  <metadata name="txtTutor.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="txtSubject.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="txtDay.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="StartTime.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="EndTime.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+</root>
