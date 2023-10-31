@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,7 +21,6 @@ namespace IOOP_Assignment
         private Schedule subjects;
         private Tutor tutor;
         private Subject subject;
-        private int countAdd;
 
         public TutorEditClassInfo(string name, string username) //parameters passed by User.cs to ge the name and username of tutors
         {
@@ -32,7 +31,6 @@ namespace IOOP_Assignment
             tutor = new Tutor(username);
             subjects = new Schedule(username);
             subject = new Subject(tutor.Subject);
-            countAdd = 0;
 
             loadTable();
         }
@@ -49,26 +47,16 @@ namespace IOOP_Assignment
 
         private void btnAddRow_Click(object sender, EventArgs e) //to add new rows into the schedule via datagridview
         {
-            countAdd++;
             gridList.Rows.Add(name, "", "", "");
         }
 
         private void btnDeleteRow_Click(object sender, EventArgs e) //to delete rows from the schedule and the SQL database
         {
             gridList.Rows.RemoveAt(gridList.CurrentCell.RowIndex);
-            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbETC"].ToString()))
-            {
-                con.Open();
-                using (SqlCommand cmd = con.CreateCommand())
-                {                  
-                        cmd.CommandText = "DELETE FROM [Schedule] where Username = '" + username + "'";
-                        cmd.ExecuteNonQuery();                
-                }
-            }
         }
 
         private void btnConfirm_Click(object sender, EventArgs e) 
-        {        
+        {
             decimal charges;
             if ( decimal.TryParse(txtCRate.Text.ToString(), out charges) == false) 
             {
@@ -82,22 +70,45 @@ namespace IOOP_Assignment
 
             using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbETC"].ToString()))
             {
+                bool flag = true;
                 connection.Open();
                 using (SqlCommand cmd = connection.CreateCommand())
                 {
-                    for (int index = gridList.Rows.Count - countAdd ; index < gridList.Rows.Count; index++) //to save the updated schedule into the SQL database
+                    cmd.CommandText = "DELETE FROM [Schedule] where Username = '" + username + "'";
+                    cmd.ExecuteNonQuery();
+                    for (int index = 0; index < gridList.Rows.Count; index++) //to save the updated schedule into the SQL database
                     {
-                        string subjectname = gridList.Rows[index].Cells[1].Value.ToString();
-                        string day = gridList.Rows[index].Cells[2].Value.ToString();
-                        string startTime = gridList.Rows[index].Cells[3].Value.ToString();
-                        string endTime = gridList.Rows[index].Cells[4].Value.ToString();
-                        cmd.CommandText = "INSERT INTO Schedule(Username, Subject, SubjectName, Day, StartTime, EndTime) " + "VALUES ('"+ username + "','" + tutor.Subject + "','" + subjectname + "','" + day + "','" + startTime + "','" + endTime + "')";
-                        cmd.ExecuteNonQuery();                   
-                    }
+                        if (gridList.Rows[index].Cells[1].Value != null &&
+                            gridList.Rows[index].Cells[2].Value != null &&
+                            gridList.Rows[index].Cells[3].Value != null &&
+                            gridList.Rows[index].Cells[4].Value != null)
+                        {
+                            string subjectname = gridList.Rows[index].Cells[1].Value.ToString();
+                            string day = gridList.Rows[index].Cells[2].Value.ToString();
+                            string startTime = gridList.Rows[index].Cells[3].Value.ToString();
+                            string endTime = gridList.Rows[index].Cells[4].Value.ToString();
+
+                            DateTime startTimeFormat, endTimeFormat;
+                            if (!DateTime.TryParse(startTime, out startTimeFormat) || !DateTime.TryParse(endTime, out endTimeFormat))
+                            {
+                                MessageBox.Show("Start time and end time must be in a valid date format");
+                                return;
+                            }
+                            
+                            cmd.CommandText = "INSERT INTO Schedule(Username, Subject, SubjectName, Day, StartTime, EndTime) " + "VALUES ('" + username + "','" + tutor.Subject + "','" + subjectname + "','" + day + "','" + startTime + "','" + endTime + "')";
+                            cmd.ExecuteNonQuery(); 
+     
+                        }
+                        else
+                        {
+                            flag = false;
+                            MessageBox.Show("Please fill in all cells.");
+                        }
+                    }     
                 }
-                MessageBox.Show("Schedule updated successfully");
+                if (flag)   
+                Close();
             }
-            Close();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
